@@ -12,50 +12,22 @@
 	</div>
 @endif
 
+@if(isset($success))
 
-@if ($message = Session::get('success'))
 <div class="alert alert-success alert-block">
-	<button type="button" class="close" data-dismiss="alert">×</button>	
-    <strong>{{ $message }}</strong>
+	<button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>{{ $success }}</strong>
 </div>
 <div class="row" style="max-width: 390px;">
-	<div class="col-sm">
-		<strong>MDPI</strong>
+    @for($index=0;$index<6;$index++)
+    <div class="col-sm">
+		<strong>{{ $sizenames[$index] }}</strong>
 		<br/>
-		<img src="/thumbnail/{{ Session::get('imageName') }}" />
+		<img src="{{ $imageName[$index] }}" />
 	</div>
-	<div class="col-sm">
-		<strong>HDPI</strong>
-		<br/>
-		<img src="/thumbnail/{{ Session::get('imageName') }}" />
-	</div>
-	</div>
-	<div class="row" style="max-width: 390px;">
-	<div class="col-sm">
-		<strong>XHDPI</strong>
-		<br/>
-		<img src="/thumbnail/{{ Session::get('imageName') }}" />
-	</div>
-	<div class="col-sm">
-		<strong>XXHDPI</strong>
-		<br/>
-		<img src="/thumbnail/{{ Session::get('imageName') }}" />
-	</div>
-	</div>
-	<div class="row" style="max-width: 390px;">
-	<div class="col-sm">
-		<strong>XXXHDPI</strong>
-		<br/>
-		<img src="/thumbnail/{{ Session::get('imageName') }}" />
-	</div>
-	<div class="col-sm">
-		<strong>Google Play Store</strong>
-		<br/>
-		<img src="/thumbnail/{{ Session::get('imageName') }}" />
-	</div>
+    @endfor
 	</div>
 @endif
-
 
 {!! Form::open(array('route' => 'resizeImagePost','enctype' => 'multipart/form-data')) !!}
 	<div class="row">
